@@ -67,8 +67,12 @@ Customer-level split: index modulo 5 assigns 160 accounts to training and 40 to 
 
 ## Architecture and deployment
 
-React + TypeScript + Vinext/Vite, with a Cloudflare-compatible deployment built by the Sites tooling. No backend credentials or live banking integrations. The hosting manifest records the app project identity; local runtime configuration and credentials are ignored by Git.
+React + TypeScript + Next.js App Router, configured for Vercel. No backend credentials or live banking integrations. Local runtime configuration and credentials are ignored by Git. Legacy Cloudflare tooling remains in the repository for reference; the default dev/build/start commands now use Next.js.
 
-This repository contains the current Cloudflare/Vinext implementation. It has not been deployed to Vercel; importing it there requires adapting the framework/build configuration first. The customer UI, model and synthetic data can be reused.
+### Deploy on Vercel
+
+Import `Linhdan-dataaccount/Hong-Leong-Pay`, select the Next.js framework and deploy the `main` branch. `vercel.json` sets `pnpm install --frozen-lockfile` and `pnpm build`. No environment variables or banking API keys are required for this demo.
+
+The existing customer UI, product lab, synthetic dataset and trained model are preserved. Both `/` and `/admin` are prerendered, then load synthetic account data in the browser.
 
 A production implementation would require bank-approved policies, calibrated real-data validation, secure identity/account consent, audit logs, a shared database, reviewer authorization, fairness checks and repayment outcomes before training a PD model.
